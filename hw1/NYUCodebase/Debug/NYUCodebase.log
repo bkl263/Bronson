@@ -1,2 +1,4 @@
-﻿  NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw1\Debug\NYUCodebase.exe
+﻿  main.cpp
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw1\nyucodebase\main.cpp(58): warning C4305: 'argument': truncation from 'double' to 'float'
+  NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw1\Debug\NYUCodebase.exe
   NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw1\Debug\NYUCodebase.pdb (Partial PDB)

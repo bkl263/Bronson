@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
 	
 	Matrix projectionMatrix;
 	projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
-	glUseProgram(textured.programID);
 
 	GLuint marioTexture = LoadTexture(RESOURCE_FOLDER"mario.png");
 	GLuint xqc = LoadTexture(RESOURCE_FOLDER"xqc0.png");
@@ -89,7 +88,6 @@ int main(int argc, char *argv[])
 		glEnableVertexAttribArray(untextured.positionAttribute);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
-		glUseProgram(textured.programID);
 		Matrix modelHarambe;
 		Matrix viewHarambe;
 		modelHarambe.Translate(2, 0, 0);

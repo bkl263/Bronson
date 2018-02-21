@@ -1,0 +1,18 @@
+﻿  main.cpp
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(53): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(171): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(172): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(173): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(136): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(140): warning C4305: '*=': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(146): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(166): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(167): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(199): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(255): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(256): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(257): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(258): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw2\nyucodebase\main.cpp(259): warning C4305: 'argument': truncation from 'double' to 'float'
+  NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw2\Debug\NYUCodebase.exe
+  NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw2\Debug\NYUCodebase.pdb (Partial PDB)
