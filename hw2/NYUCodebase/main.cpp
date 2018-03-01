@@ -170,7 +170,7 @@ public:
 private:
 	float x_vel = 0.002;
 	float y_vel = 0.001;
-	float max_vel = 0.002;
+	float max_vel = 0.01;
 };
 
 class Boundary : public Entity {
