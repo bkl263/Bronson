@@ -13,6 +13,7 @@
 #include <vector>
 #include "GameState.h"
 #include <deque>
+#include <algorithm> 
 
 #ifdef _WINDOWS
 	#define RESOURCE_FOLDER ""
@@ -112,6 +113,10 @@ public:
 	Entity(float _x, float _y, float width, float height) : x(_x), y(_y), height(height), width(width) {}
 	Entity(float _x, float _y, float width, float height, float u, float v, float t_width, float t_height) : u(u), v(v), t_width(t_width), t_height(t_height), x(_x), y(_y), height(height), width(width) {}
 	void setTex(GLuint& tex) { texture = tex; }
+	bool collision(Entity* rhs) {
+		if (bot > rhs->top | top < rhs->bot | left > rhs->right | right < rhs->left) { return false; }
+		return true;
+	}
 	bool OutofBounds(int mode = 0) {
 		switch (mode) {
 		case 0:
@@ -200,18 +205,10 @@ private:
 class Player : public Entity {
 public:
 	Player() : Entity() {}
-	~Player() {
-		for (Bullet* bullet : bullets) {
-			delete bullet;
-		}
-	}
 	Player(float _x, float _y, float width, float height) : Entity(_x, _y, width, height) {}
 	Player(float _x, float _y, float width, float height, float u, float v, float t_width, float t_height) : Entity(_x, _y, width, height, u, v, t_width, t_height) {}
 	void draw(ShaderProgram& shader) const {
 		Entity::draw(shader);
-		for (Bullet* bullet : bullets) {
-			bullet->draw(shader);
-		}
 	}
 	void move(float elapsed) {
 		x += speed*elapsed;
@@ -219,8 +216,8 @@ public:
 		left = x - (width / 2);
 		right = x + (width / 2);
 	}
-	void shoot() {
-		if (lastBulletElapsed >= bulletDelay) {
+	void shoot(std::deque<Bullet*>& bullets) {
+		if (bullets.size() == 0) {
 			Bullet* newBullet = new Bullet(x, y + height / 2 + bulletHeight / 2, bulletWidth, bulletHeight, 0.32, 0.93, 0.1, 0.01);
 			newBullet->setTex(texture);
 			bullets.push_back(newBullet);
@@ -229,13 +226,6 @@ public:
 	}
 	void update(float elapsed) {
 		lastBulletElapsed += elapsed;
-		
-		int pos = 0;
-		for (Bullet* bullet : bullets) {
-			bullet->update(elapsed);
-			if (bullet->OutofBounds(3)) { delete bullet; bullets.erase(bullets.begin() + pos); }
-			++pos;
-		}
 	}
 private:
 	float bulletDelay = 0.5;
@@ -243,7 +233,6 @@ private:
 	float speed = 2.5;
 	float bulletWidth = 0.009;
 	float bulletHeight = 0.2;
-	std::deque<Bullet*> bullets;
 };
 
 class Enemy : public Entity {
@@ -251,9 +240,21 @@ public:
 	Enemy() {}
 	Enemy(float _x, float _y, float width, float height) : Entity(_x, _y, width, height) {}
 	Enemy(float _x, float _y, float width, float height, float u, float v, float t_width, float t_height) : Entity(_x, _y, width, height, u, v, t_width, t_height) {}
-	void update(float elapsed) {
+	bool update(float elapsed, float step, bool y_dir) {
 		timeElapsed += elapsed;
-		if (timeElapsed > moveDelay) { x += width; timeElapsed = 0; }
+		/*
+		if (timeElapsed > moveDelay) { 
+			if (y_dir) { y -= 0.25; }
+			else { x += step; }
+			timeElapsed = 0;
+			return true;
+		}
+		*/
+		top = y + (height / 2);
+		bot = y - (height / 2);
+		left = x - (width / 2);
+		right = x + (width / 2);
+		return false;
 	}
 private:
 	float moveDelay = 1;
@@ -306,7 +307,7 @@ public:
 	void makeEnemies(int row, int col) {
 		float startY = 1.75;
 		for (int i = 0; i < row; i++) {
-			float startX = -1.5;
+			float startX = -1.6;
 			std::deque<Enemy*> temp;
 			for (int j = 0; j < col; j++) {
 				Enemy* newEnemy = new Enemy(startX, startY, 0.25, 0.15, 0.12, 0.245, 0.24, 0.115);
@@ -318,6 +319,44 @@ public:
 			enemies.push_back(temp);
 		}
 	}
+	void checkHit() {
+		int eROW = 0;
+		for (std::deque<Enemy*> row : enemies) {
+			int eCOL = 0;
+			for (Enemy* enemy : row) {
+				int pos = 0;
+				for (Bullet* bullet : bullets) {
+					if (bullet->collision(enemy)) {
+						delete bullet;
+						bullets.erase(bullets.begin() + pos);
+						delete enemy;
+						row.erase(row.begin() + eCOL);
+					}
+					++pos;
+				}
+				if (row.size() == 0) { enemies.erase(enemies.begin() + eROW); }
+				++eCOL;
+			}
+			++eROW;
+		}
+	}
+	void bulletOutofBounds(float elapsed) {
+		int pos = 0;
+		for (Bullet* bullet : bullets) {
+			bullet->update(elapsed);
+			if (bullet->OutofBounds(3)) { delete bullet; bullets.erase(bullets.begin() + pos); }
+			++pos;
+		}
+	}
+	bool enemyOutOfBound() {
+		bool ret = false;
+		for (std::deque<Enemy*> row : enemies) {
+			for (Enemy* enemy : row) {
+				ret |= enemy->OutofBounds();
+			}
+		}
+		return ret;
+	}
 	void processInput(SDL_Event& event, bool& done) {
 		while (SDL_PollEvent(&event)) {
 			if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
@@ -325,7 +364,7 @@ public:
 			}
 		}
 		if (keys[SDL_SCANCODE_SPACE]) {
-			ship.shoot();
+			ship.shoot(bullets);
 		}
 	}
 	void Render() {
@@ -336,6 +375,11 @@ public:
 				enemy->draw(textured);
 			}
 		}
+
+		for (Bullet* bullet : bullets) {
+			bullet->draw(textured);
+		}
+
 		SDL_GL_SwapWindow(displayWindow);
 	}
 	void Update(float elapsed) {
@@ -346,15 +390,20 @@ public:
 			if (!ship.OutofBounds(1)) { ship.move(-elapsed); }
 		}
 		ship.update(elapsed);
+		bulletOutofBounds(elapsed);
+		checkHit();
+
 		for (std::deque<Enemy*> row : enemies) {
 			for (Enemy* enemy : row) {
-				enemy->update(elapsed);
+				enemy->update(elapsed, enemy_step, false);
 			}
 		}
 	}
 private:
+	float enemy_step = 0.25;
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 	std::deque<std::deque<Enemy*>> enemies;
+	std::deque<Bullet*> bullets;
 	GLuint spritesheet;
 	Player ship;
 };
