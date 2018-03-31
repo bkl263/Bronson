@@ -78,7 +78,6 @@ void DrawText(ShaderProgram* shader, int fontTexture, std::string text, float si
 	
 
 	shader->SetModelMatrix(modelMatrix);
-	shader->SetProjectionMatrix(projectionMatrix);
 	shader->SetViewMatrix(viewMatrix);
 	for (int i = 0; i < vertexData.size(); i += 12) {
 		float position[] = {

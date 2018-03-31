@@ -8,6 +8,7 @@
 #include <SDL_opengl.h>
 #include <SDL_image.h>
 #include "Matrix.h"
+#include "Entity.h"
 #include "ShaderProgram.h"
 #include "stb_image.h"
 #include <assert.h>
