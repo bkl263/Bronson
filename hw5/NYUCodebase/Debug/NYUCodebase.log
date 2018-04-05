@@ -1,0 +1,8 @@
+﻿  Entity.cpp
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(116): warning C4018: '<': signed/unsigned mismatch
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(121): warning C4018: '<': signed/unsigned mismatch
+  NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw5\Debug\NYUCodebase.exe
+  NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw5\Debug\NYUCodebase.pdb (Partial PDB)
