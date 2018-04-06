@@ -7,6 +7,7 @@ Entity::Entity(float _x, float _y, float tileSize, int t_Ind, int SPRITE_COUNT_X
 	u = (float)(((int)t_Ind) % SPRITE_COUNT_X) / (float)SPRITE_COUNT_X;
 	v = (float)(((int)t_Ind) / SPRITE_COUNT_X) / (float)SPRITE_COUNT_Y;
 
+
 	Vector p1 = Vector(tileSize * x, -tileSize * y, 0);
 	Vector p2 = Vector(tileSize * x, (-tileSize * y) - tileSize, 0);
 	Vector p3 = Vector((tileSize * x) + tileSize, (-tileSize * y) - tileSize, 0);
@@ -16,7 +17,6 @@ Entity::Entity(float _x, float _y, float tileSize, int t_Ind, int SPRITE_COUNT_X
 	points.push_back(p2);
 	points.push_back(p3);
 	points.push_back(p4);
-
 
 }
 void Entity::setTex(const GLuint& tex) { texture = tex; }
@@ -104,6 +104,17 @@ void Entity::centerModel() {
 	x = -0.5;
 	y = -0.5;
 
+	Vector p1 = Vector(tileSize * x, -tileSize * y, 0);
+	Vector p2 = Vector(tileSize * x, (-tileSize * y) - tileSize, 0);
+	Vector p3 = Vector((tileSize * x) + tileSize, (-tileSize * y) - tileSize, 0);
+	Vector p4 = Vector((tileSize * x) + tileSize, -tileSize * y, 0);
+
+	points.clear();
+	points.push_back(p1);
+	points.push_back(p2);
+	points.push_back(p3);
+	points.push_back(p4);
+
 	modelMatrix.Translate(prev_x, prev_y, 0);
 }
 
@@ -123,10 +134,10 @@ void Entity::checkCollision(Entity* rhs) {
 		e2Points.push_back(std::make_pair(point.x, point.y));
 	}
 	
-
 	bool collided = CheckSATCollision(e1Points, e2Points, penetration);
 
 	if (collided) {
-		std::cout << "Collided" << std::endl;
+		this->modelMatrix.Translate(penetration.first * 0.5f, penetration.second * 0.5f, 0);
+		rhs->modelMatrix.Translate(-penetration.first * 0.5f, -penetration.second * 0.5f, 0);
 	}
 }

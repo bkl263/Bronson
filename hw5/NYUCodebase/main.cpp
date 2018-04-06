@@ -124,9 +124,8 @@ public:
 	Meteor() {}
 	Meteor(float _x, float _y, float tileSize, int t_ind, int SPRITE_COUNT_X, int SPRITE_COUNT_Y) : Entity(_x, _y, tileSize, t_ind, SPRITE_COUNT_X, SPRITE_COUNT_Y) {
 		centerModel();
-		scaleRandom();
 		rotateRandom();
-
+		scaleRandom();
 		y_vel = MIN_VEL + ((MAX_VEL-MIN_VEL) * (float)rand() / (float)RAND_MAX);
 	}
 
@@ -142,7 +141,7 @@ private:
 	int randScale = rand() % 5 + 1;
 	float randRotate = 3.1415926535 * 2 * (float)rand() / (float)RAND_MAX;
 
-	float MIN_VEL = 0.1;
+	float MIN_VEL = 0.05;
 	float MAX_VEL = 0.1;
 };
 
@@ -172,9 +171,6 @@ public:
 
 	void boost() {
 		y_vel += accel;
-	}
-	void reset() {
-
 	}
 
 private:
@@ -220,7 +216,6 @@ public:
 		for (size_t i = 0; i < MAX_METEOR; i++) {
 			float x = -3.55 + ((3.55 * 2) * (float)rand() / (float)RAND_MAX);
 			float y = -2.5 + ((2.5 * 2) * (float)rand() / (float)RAND_MAX);
-
 			Meteor* meteor = new Meteor(x, y, 0.25, 1, 1, 1);
 			int tex = rand() % 8 + 1;
 			meteor->setTex(textures[tex]);
@@ -240,7 +235,6 @@ public:
 		if (keys[SDL_SCANCODE_D]) { player.turn("right"); }
 		if (keys[SDL_SCANCODE_A]) { player.turn("left"); }
 		if (keys[SDL_SCANCODE_W]) { player.boost(); }
-		if (keys[SDL_SCANCODE_SPACE]) { player.reset(); }
 	}
 	void Render() {
 		glClearColor(0, 0, 0, 1);
@@ -253,12 +247,11 @@ public:
 	void Update(float elapsed) {
 		for (Entity* self : world) {
 			self->update(elapsed);
-			for (Entity* other : world) {
-				if (self != other) {
-					self->checkCollision(other);
-				}
-			}
 		}
+		for (int i = 1; i < world.size(); ++i) {
+			world[0]->checkCollision(world[i]);
+		}
+
 	}
 private:
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);

@@ -1,8 +1,22 @@
-﻿  Entity.cpp
-c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(87): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(116): warning C4018: '<': signed/unsigned mismatch
-c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\entity.cpp(121): warning C4018: '<': signed/unsigned mismatch
+﻿  main.cpp
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(45): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(67): warning C4018: '<': signed/unsigned mismatch
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(70): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(95): warning C4018: '<': signed/unsigned mismatch
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(142): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(144): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(145): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(177): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(178): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(264): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(215): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(216): warning C4018: '<': signed/unsigned mismatch
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(217): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(218): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(251): warning C4018: '<': signed/unsigned mismatch
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(283): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\user\desktop\nyu tandon\cs 3113\bronson\hw5\nyucodebase\main.cpp(286): warning C4305: 'argument': truncation from 'double' to 'float'
   NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw5\Debug\NYUCodebase.exe
   NYUCodebase.vcxproj -> C:\Users\user\Desktop\NYU Tandon\CS 3113\Bronson\hw5\Debug\NYUCodebase.pdb (Partial PDB)
